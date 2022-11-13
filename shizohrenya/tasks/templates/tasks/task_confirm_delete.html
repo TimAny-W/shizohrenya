@@ -1,0 +1,13 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}
+Delete shit
+{% endblock %}
+{% block body %}
+    <a href="{% url 'tasks' %}">Come back</a>
+    <form method="post" action="">
+        {% csrf_token %}
+        <p>Delete this shit? {{task}}</p>
+        <input value="Delete" type="submit">
+    </form>
+{% endblock %}
