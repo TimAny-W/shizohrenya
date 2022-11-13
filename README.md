@@ -1,1 +1,1 @@
-# shizohrenya
+# ShizoXrenyA
