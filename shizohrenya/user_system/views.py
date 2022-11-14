@@ -10,7 +10,7 @@ from .forms import UserRegistrationForm
 class Registration(View):
     """View class of registration new user"""
 
-    template_name = 'user_system/registration.html'
+    template_name = 'registration/registration.html'
 
     def get(self, request):
         """
@@ -40,4 +40,5 @@ class Registration(View):
         else:
             return render(request, self.template_name, context={
                 'form': form,
-                'errors': form.errors})
+                'errors': form.errors
+            })

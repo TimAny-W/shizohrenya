@@ -3,7 +3,9 @@
 
 {% block content %}
     <form action="{% url 'logout' %}">
-        {{ form }}
+        <button type="submit" class="btn btn-success" >
+            <a href="{% url 'home' %}">Submit</a>
+        </button>
     </form>
 
 {% endblock %}

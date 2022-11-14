@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+          <h1>Task create</h1>
+      <a href="{% url 'task-create' %}">Create shit</a>
+      <h1>Tasks list</h1>
+      <table>
+            <tr><th>Task</th></tr>
+            {% for task in object_list %}
+            <tr>
+                  <td>{{task.title}}</td>
+                  <td><a href="{% url 'task' task.id %}">View</a></td>
+                  <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
+                  <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
+            </tr>
+            {% empty %}
+                  <h2>Ошибка 1. Список пустой</h2>
+            {% endfor %}
+    </table>
+
+
+      <div class="user_system">
+            {{ user }}<br>
+            {% if request.user.is_authenticated %}
+                  <a href="{% url 'logout' %}">Выйти из аккаунта</a>
+            {% else %}
+                  <a href="{% url 'registration' %}">Зарегистрироваться</a><br>
+                  <a href="{% url 'login' %}">Войти</a>
+            {% endif %}
+
+      </div>
+
+{% endblock %}
