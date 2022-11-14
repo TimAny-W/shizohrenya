@@ -7,7 +7,8 @@ class Task(models.Model):
     title = models.CharField('Название', max_length=30)
     text = models.TextField('Текст', max_length=255)
     complete = models.BooleanField('Выполнение', default=False)
-    creating_date = models.DateTimeField('Дата', null=True, auto_now_add=False)
+    creating_date = models.DateTimeField('Дата', null=True, auto_now=True)
+    complete_date = models.DateTimeField('Дата выполненения',null=True)
 
     def __str__(self):
         return self.title

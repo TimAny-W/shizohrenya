@@ -12,7 +12,9 @@ Create shit
       {{ form.title }}<br>
       Текст
       {{ form.text }}<br>
+      Срок выполнения
+      {{ form.complete_date }}
       <input type="submit" value="Submit">
-
   </form>
+  {{ errors }}
 {% endblock %}

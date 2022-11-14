@@ -29,9 +29,11 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 
 class TaskCreate(LoginRequiredMixin, View):
+    """Class for create task"""
     template_name = 'tasks/task_form.html'
 
     def get(self, request):
+        """Func which answer the GET method"""
         return render(request,
                       self.template_name,
                       context={
@@ -40,6 +42,11 @@ class TaskCreate(LoginRequiredMixin, View):
                       )
 
     def post(self, request):
+        """Func which answer the POST method
+
+        if form valid: get and save the form
+        else: return form and errors
+        """
         form = TaskCreateForm(request.POST)
         if form.is_valid():
             commit = form.save(commit=False)
