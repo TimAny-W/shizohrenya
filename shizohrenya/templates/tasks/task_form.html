@@ -6,9 +6,12 @@ Create shit
 {% block body %}
   <h1>creating shit</h1>
   <form method="post" action="">
-      <a href="{% url 'home' %}">Come back</a>
+      <a href="{% url 'home' %}">Come back</a><br>
       {% csrf_token %}
-      {{form.as_p}}
+      Название
+      {{ form.title }}<br>
+      Текст
+      {{ form.text }}<br>
       <input type="submit" value="Submit">
 
   </form>

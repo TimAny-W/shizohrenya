@@ -9,7 +9,6 @@ class Task(models.Model):
     complete = models.BooleanField('Выполнение', default=False)
     creating_date = models.DateTimeField('Дата', null=True, auto_now_add=False)
 
-
     def __str__(self):
         return self.title
 
