@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 from django.views import View
@@ -11,7 +13,7 @@ class Registration(View):
     """View class of registration new user"""
 
     template_name = 'registration/registration.html'
-
+    success_url = reverse_lazy('login')
     def get(self, request):
         """
         Func which answers the GET request
@@ -35,7 +37,7 @@ class Registration(View):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('home')
+            return redirect(self.success_url)
 
         else:
             return render(request, self.template_name, context={
