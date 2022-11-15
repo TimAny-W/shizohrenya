@@ -43,6 +43,7 @@ List of shit
                         <td><a href="{% url 'task' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">View</button></a></td>
                         <td><a href="{% url 'task-update' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Edit</button></a></td>
                         <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Delete</button></a></td>
+                        <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Complete</button></a></td>
                     </span>
 
                 </label>

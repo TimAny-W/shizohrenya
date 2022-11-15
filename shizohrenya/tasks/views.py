@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic.list import ListView
@@ -9,6 +10,8 @@ from .forms import TaskCreateForm
 from .models import Task
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+#from user_system.models import CustomUser
 
 
 class TaskList(LoginRequiredMixin, ListView):
@@ -56,8 +59,7 @@ class TaskCreate(LoginRequiredMixin, View):
         else:
             context = {'form': form,
                        'errors': form.errors}
-            return render(request,self.template_name,context)
-
+            return render(request, self.template_name, context)
 
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
@@ -70,3 +72,18 @@ class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+
+
+class TaskComplete(LoginRequiredMixin, View):
+    template_name = 'tasks/task_confirm_complete.html'
+
+    def get(self, request, pk):
+        context = {
+            'task': Task.objects.get(id=pk)
+        }
+        return render(request, self.template_name, context=context)
+
+    def post(self, request, pk):
+        Task.objects.get(id=pk).delete()
+
+        return redirect('tasks')
