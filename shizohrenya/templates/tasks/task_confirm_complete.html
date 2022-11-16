@@ -5,6 +5,7 @@ Delete shit
 {% endblock %}
 {% block body %}
     <a href="{% url 'tasks' %}">Come back</a>
+    <a href="https://github.com/TimAny-W/shizohrenya">Contacts</a>
     <form method="post" action="">
         {% csrf_token %}
         {{ task.text }}

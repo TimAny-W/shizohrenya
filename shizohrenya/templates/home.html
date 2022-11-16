@@ -3,13 +3,15 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
-      <h1>Главная страница</h1>
+      <h1>Добро Пожаловать!</h1>
       {% if request.user.is_authenticated %}
-            <a href="{% url 'tasks' %}"><button type="button" class="btn btn-outline-primary me-2">Tasks</button></a>
+            <a href="{% url 'tasks' %}">Tasks</button></a>
+            <a href="{% url 'task-list-completed' %}">Completed Tasks</button></a>
+            <a href="https://github.com/TimAny-W/shizohrenya">Contacts</a>
       {% endif %}
       <div class="user_system">
             {% if request.user.is_authenticated %}
-                  {{ user }}<br>
+                  Аккаунт: {{ user }}<br>
                   <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Выйти из аккаунта</button></a>
             {% else %}
                   <a href="{% url 'registration' %}"><button type="button" class="btn btn-outline-primary me-2">Зарегистрироваться</button></a>

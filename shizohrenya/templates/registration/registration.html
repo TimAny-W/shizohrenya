@@ -12,5 +12,6 @@
         <button type="submit" class="btn btn-success">submit</button><br>
         {% csrf_token %}
     </form>
+    <h3>Already registered?<a href="{% url 'login' %}">Login</a></h3>
     {{ errors }}
 {% endblock %}

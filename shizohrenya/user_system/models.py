@@ -6,6 +6,7 @@ from tasks.models import Task
 
 
 class CustomUser(AbstractUser):
-    completed_tasks = models.ForeignKey(Task, on_delete=models.CASCADE, null=True)
+    completed_tasks = models.ManyToManyField(Task, null=True)
+
     def __str__(self):
         return self.username

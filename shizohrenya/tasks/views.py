@@ -12,7 +12,8 @@ from .models import Task
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-#from user_system.models import CustomUser
+
+# from user_system.models import CustomUser
 
 
 class TaskList(LoginRequiredMixin, ListView):
@@ -91,8 +92,16 @@ class TaskComplete(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         task = Task.objects.get(id=pk)
-        #user = get_user_model()
-        #user.objects.get(username=request.user.username)
-        #print(user.completed_tasks.add(task))
+        request.user.completed_tasks.add(task)
         task.delete()
         return redirect('tasks')
+
+
+class TaskListCompleted(LoginRequiredMixin, View):
+    template_name = 'tasks/task_list_completed.html'
+
+    def get(self, request):
+        context = {
+            'list': request.user.completed_tasks.all()
+        }
+        return render(request, self.template_name, context)
