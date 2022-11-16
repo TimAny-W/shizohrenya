@@ -6,7 +6,6 @@ from tasks.models import Task
 
 
 class CustomUser(AbstractUser):
-    completed_tasks = models.ForeignKey(Task, on_delete=models.CASCADE)
-
+    completed_tasks = models.ForeignKey(Task, on_delete=models.CASCADE, null=True)
     def __str__(self):
-        return self.completed_tasks
+        return self.username

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.views import View
@@ -36,7 +37,10 @@ class TaskCreate(LoginRequiredMixin, View):
     template_name = 'tasks/task_form.html'
 
     def get(self, request):
-        """Func which answer the GET method"""
+        """Func which answer the GET method
+        return template with task form
+        """
+
         return render(request,
                       self.template_name,
                       context={
@@ -78,12 +82,17 @@ class TaskComplete(LoginRequiredMixin, View):
     template_name = 'tasks/task_confirm_complete.html'
 
     def get(self, request, pk):
+        """Answer GET method
+        return template with current task context"""
         context = {
             'task': Task.objects.get(id=pk)
         }
         return render(request, self.template_name, context=context)
 
     def post(self, request, pk):
-        Task.objects.get(id=pk).delete()
-
+        task = Task.objects.get(id=pk)
+        #user = get_user_model()
+        #user.objects.get(username=request.user.username)
+        #print(user.completed_tasks.add(task))
+        task.delete()
         return redirect('tasks')
