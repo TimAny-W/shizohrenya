@@ -92,8 +92,10 @@ class TaskComplete(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         task = Task.objects.get(id=pk)
+        task.is_completed = True
+        task.save()
         request.user.completed_tasks.add(task)
-        task.delete()
+        print(f'{task.title} is switched to {task.is_completed}')
         return redirect('tasks')
 
 

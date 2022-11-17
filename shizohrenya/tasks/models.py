@@ -10,7 +10,7 @@ class Task(models.Model):
     complete = models.BooleanField('Выполнение', default=False)
     creating_date = models.DateTimeField('Дата', null=True, auto_now=True)
     complete_date = models.DateTimeField('Дата выполненения',null=True)
-
+    is_completed = models.BooleanField("Выполнена ли задача?",default=False)
     def __str__(self):
         return self.title
 

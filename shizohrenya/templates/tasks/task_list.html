@@ -32,15 +32,16 @@ List of shit
 
     <div class="list-group w-auto">
             {% for task in object_list %}
+                {% if not task.is_completed %}
                 <label class="list-group-item d-flex gap-3">
                     <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-                    <span class="pt-1 form-checked-content">
-                      <strong>{{task.title}}</strong>
-                      <small class="d-block text-muted">
-                        <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
-                        {{task.creating_date}}
-                      </small>
-                    </span>
+                        <span class="pt-1 form-checked-content">
+                          <strong>{{task.title}}</strong>
+                          <small class="d-block text-muted">
+                            <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
+                            {{task.creating_date}}
+                          </small>
+                        </span>
                     <span>
                         <td><a href="{% url 'task' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">View</button></a></td>
                         <td><a href="{% url 'task-update' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Edit</button></a></td>
@@ -49,7 +50,7 @@ List of shit
                     </span>
 
                 </label>
-
+                {% endif %}
                 {% empty %}
                     <h2>Список пустой</h2>
             {% endfor %}
