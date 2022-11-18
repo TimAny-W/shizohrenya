@@ -15,7 +15,10 @@
 
        form {
             width: 300px;
+            padding-top: 10px
         }
+
+       .btn {margin-top: 10px}
 
     </style>
 {% endblock %}
@@ -35,6 +38,7 @@
           {{ form }}
         {% csrf_token %}
         <button type="submit" class="btn btn-success w-100 btn-lg btn-primary">Sign in</button>
+        <a href="{% url 'registration' %}"><button type="button" class="btn btn-outline-primary me-2">Зарегистрироваться</button></a>
         <p class="mt-5 mb-3 text-muted">Шизофрения © 2022</p>
       </form>
 <!--        -->
