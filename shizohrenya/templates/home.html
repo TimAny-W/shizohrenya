@@ -12,10 +12,10 @@
       <div class="user_system">
             {% if request.user.is_authenticated %}
                   Аккаунт: {{ user }}<br>
-                  <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Выйти из аккаунта</button></a>
+                  <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Log out</button></a>
             {% else %}
-                  <a href="{% url 'registration' %}"><button type="button" class="btn btn-outline-primary me-2">Зарегистрироваться</button></a>
-                  <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary me-2">Войти</button></a>
+                  <a href="{% url 'registration' %}"><button type="button" class="btn btn-outline-primary me-2">Register</button></a>
+                  <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
             {% endif %}
       </div>
 
