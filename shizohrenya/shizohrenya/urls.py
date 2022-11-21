@@ -24,7 +24,10 @@ def main(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('user/', include('user_system.urls')),
+
     path('tasks/', include('tasks.urls')),
+
     path('', main, name='home')
 ]

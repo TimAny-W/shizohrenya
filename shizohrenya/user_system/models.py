@@ -8,6 +8,5 @@ from tasks.models import Task
 class CustomUser(AbstractUser):
     completed_tasks = models.ManyToManyField(Task,)
 
-
     def __str__(self):
         return self.username
