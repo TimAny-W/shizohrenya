@@ -1,60 +1,82 @@
 {% extends 'tasks/base.html' %}
 
+{% load static %}
+
+
 {% block title %}
 List of shit
 {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="">
-    <style>
-        .titles {
-            height: 60px;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: space-between
-         }
-
-    </style>
+    <link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}">
 {% endblock %}
 
-{% block body %}
-    <a href="{% url 'home' %}">Home</a>
-    <a href="{% url 'task-list-completed' %}">Completed tasks</a>
-    <a href="https://github.com/TimAny-W/shizohrenya">Contacts</a>
+{% block content %}
+<!--    <div class="list-group w-auto">-->
+<!--      <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">-->
+<!--        <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">-->
+<!--        <div class="d-flex gap-2 w-100 justify-content-between">-->
+<!--          <div>-->
+<!--            <h6 class="mb-0">List group item heading</h6>-->
+<!--            <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>-->
+<!--          </div>-->
+<!--          <small class="opacity-50 text-nowrap">now</small>-->
+<!--        </div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">-->
+<!--        <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">-->
+<!--        <div class="d-flex gap-2 w-100 justify-content-between">-->
+<!--          <div>-->
+<!--            <h6 class="mb-0">Another title here</h6>-->
+<!--            <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps to a new line.</p>-->
+<!--          </div>-->
+<!--          <small class="opacity-50 text-nowrap">3d</small>-->
+<!--        </div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">-->
+<!--        <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">-->
+<!--        <div class="d-flex gap-2 w-100 justify-content-between">-->
+<!--          <div>-->
+<!--            <h6 class="mb-0">Third heading</h6>-->
+<!--            <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>-->
+<!--          </div>-->
+<!--          <small class="opacity-50 text-nowrap">1w</small>-->
+<!--        </div>-->
+<!--      </a>-->
+<!--    </div>-->
 
-    <div class="titles">
-        <h1>Tasks list</h1>
-        <svg class="bi me-1" width="1em" height="1em"><use xlink:href="{% url 'task-create' %}"></use></svg>
-        <a href="{% url 'task-create' %}"><button type="button" class="btn btn-outline-primary me-2">Add task</button></a>
-    </div>
 
 
-
-    <div class="list-group w-auto">
+    <div class="tasks-list">
             {% for task in object_list %}
-                {% if not task.is_completed %}
-                <label class="list-group-item d-flex gap-3">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-                        <span class="pt-1 form-checked-content">
-                          <strong>{{task.title}}</strong>
-                          <small class="d-block text-muted">
-                            <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
-                            {{task.creating_date}}
-                          </small>
-                        </span>
-                    <span>
-                        <td><a href="{% url 'task' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">View</button></a></td>
-                        <td><a href="{% url 'task-update' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Edit</button></a></td>
-                        <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Delete</button></a></td>
-                        <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">Complete</button></a></td>
-                    </span>
+                <label>
+                    <div class="task">
+                    {% if not task.is_completed %}
 
+                        <input class="" type="checkbox" >
+                              <strong>{{task.title}}</strong>
+
+                                {{task.creating_date}}
+
+                        <span>
+                            <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
+                            <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
+                        </span>
+
+                    {% else %}
+                        <input class="" type="checkbox" checked>
+                              <i><s><strong>{{task.title}}</strong></s></i>
+                              <i><s>{{task.complete_date}}</s></i>
+                        <span>
+                            <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
+                            <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
+                        </span>
+                    </div>
+                    {% endif %}
                 </label>
-                {% endif %}
                 {% empty %}
                     <h2>Список пустой</h2>
             {% endfor %}
     </div>
-
 
 {% endblock %}
