@@ -1,14 +1,15 @@
-{% extends 'index.html' %}
+{% extends 'tasks/base.html' %}
+
+{% load static %}
 
 {% block title %}Главная страница{% endblock %}
 
+{% block links %}
+    <link rel="stylesheet" href="{% static 'tasks/css/home.css' %}">
+{% endblock %}
 {% block content %}
       <h1>Добро Пожаловать!</h1>
-      {% if request.user.is_authenticated %}
-            <a href="{% url 'tasks' %}">Tasks</button></a>
-            <a href="{% url 'task-list-completed' %}">Completed Tasks</button></a>
-            <a href="https://github.com/TimAny-W/shizohrenya">Contacts</a>
-      {% endif %}
+
       <div class="user_system">
             {% if request.user.is_authenticated %}
                   Аккаунт: {{ user }}<br>

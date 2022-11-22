@@ -1,0 +1,42 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+Task detail
+{% endblock %}
+
+{% block links %}
+    <script src="{% static 'tasks/js/timer.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+  <h1>Task {{task}}</h1>
+  {{ task.text }}<br>
+
+
+    <div id="timer">
+
+
+        <div style="width:500px; display: inline">
+            <h4 style="display:inline;">Дата создания</h4>
+            <span>{{object.creating_date|date:"M d, Y H:m:s"}}</span>
+        </div>
+        <br>
+
+
+        <div style="width:500px; display: inline">
+            <h4 style="display:inline;">Дата выполнения</h4>
+            <div id="task-box" style="display:inline;"><span>{{object.complete_date|date:"M d, Y H:m:s"}}</span></div>
+        </div>
+        <br>
+        <h4 style="display:inline;">Осталось времени</h4>
+        <div id="countdown-box" style="width:500px; display: inline">
+            <div class="spinner" role="status"></div>
+        </div>
+        <br>
+
+    </div>
+
+{% endblock %}

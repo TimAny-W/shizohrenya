@@ -1,0 +1,6 @@
+a.completed-tasks{
+    background-color: rgb(235, 235, 235);
+    color:rgb(248, 134, 2);
+    border-radius: 3px;
+    padding: 7px 13px;
+}
