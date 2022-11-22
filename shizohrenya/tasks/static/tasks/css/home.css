@@ -37,13 +37,18 @@ h1 {
 .btn {
     width: 200px;
     height: 80px;
-
+    text-decoration: none;
     background: #686363;
     border: 0px;
-    border-radius: 30px;
+    border-radius: 10px;
     font-style: normal;
     font-weight: 200;
     font-size: 40px;
-
+    padding: 7px 13px;
     color: #FFFFFF;
+}
+
+.buttons {
+    margin-top: 20px;
+
 }

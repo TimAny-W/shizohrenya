@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="all-blocks">
+        {% if request.user.is_authenticated %}
         <header>
             <ul class="head-navigation">
                 <li><a href="{% url 'home' %}" class="home">Home</a></li>
@@ -20,6 +21,7 @@
                 <li><a href="https://image.winudf.com/v2/image1/Y29tLmtpcm1pbnQucmFrZXNjcmVhbWVyX3NjcmVlbl8wXzE1OTQxNzYzODNfMDEx/screen-0.jpg?fakeurl=1&type=.webp">Fuck you</a></li>
               </ul>
         </header>
+        {% endif %}
         <main>
         {% block content %}
         {% endblock %}
