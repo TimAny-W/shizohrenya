@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+
+    <h5>nickname: {{ user.username }}<br></h5>
+    <h5>email: {{ user.email }}<br></h5>
+    <h5>Joined data: {{ user.date_joined }}<br></h5>
+
+    <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Log out</button></a><br>
+
+{% for i in place_list %}
+    <br>место {{ i }}<br>
+    {% for line in rating %}
+        Пользователь:<a href="{% url 'profile' line.1 %}">{{ line.0 }}</a>Кол-во выполненных задач: {{ line.1 }}
+    {% endfor %}
+{% endfor %}
+
+
+{% endblock %}
