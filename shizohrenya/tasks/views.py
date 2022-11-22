@@ -17,74 +17,63 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class TaskList(LoginRequiredMixin, ListView):
-    """return all user's tasks"""
     model = Task
     context_object_name = 'tasks'
 
     def get_context_data(self, **kwargs):
-        """add to context count and all tasks"""
-
         context = super().get_context_data(**kwargs)
-
         context['tasks'] = context['tasks'].filter(user=self.request.user)
         context['count'] = context['tasks'].filter(complete=False).count()
-
         return context
 
 
 class TaskDetail(LoginRequiredMixin, DetailView):
-    """Return a detailed description of task"""
-
     model = Task
     context_object_name = 'task'
     template_name = 'tasks/task.html'
 
 
 class TaskCreate(LoginRequiredMixin, View):
-    """Creating a new task"""
-
+    """Class for create task"""
     template_name = 'tasks/task_form.html'
 
     def get(self, request):
-        """return template with task form"""
+        """Func which answer the GET method
+        return template with task form
+        """
 
         return render(request,
                       self.template_name,
                       context={
                           "form": TaskCreateForm
-                        }
+                      }
                       )
 
     def post(self, request):
-        """Creating a new task and save it"""
+        """Func which answer the POST method
 
+        if form valid: get and save the form
+        else: return form and errors
+        """
         form = TaskCreateForm(request.POST)
-
         if form.is_valid():
             commit = form.save(commit=False)
-
             commit.user = request.user
             commit.save()
-
             return redirect('tasks')
         else:
             context = {'form': form,
                        'errors': form.errors}
-
             return render(request, self.template_name, context)
 
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
-    """Editing task"""
-
     model = Task
     fields = '__all__'
     success_url = reverse_lazy('tasks')
 
 
 class DeleteView(LoginRequiredMixin, DeleteView):
-    """Deleting a task"""
-
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
@@ -94,29 +83,23 @@ class TaskComplete(LoginRequiredMixin, View):
     template_name = 'tasks/task_confirm_complete.html'
 
     def get(self, request, pk):
-        """return template with current task context"""
-
+        """Answer GET method
+        return template with current task context"""
         context = {
             'task': Task.objects.get(id=pk)
         }
         return render(request, self.template_name, context=context)
 
     def post(self, request, pk):
-        """Add task to completed tasks of user and hide it"""
-
         task = Task.objects.get(id=pk)
-
         task.is_completed = True
         task.save()
-
         request.user.completed_tasks.add(task)
-
+        print(f'{task.title} is switched to {task.is_completed}')
         return redirect('tasks')
 
 
 class TaskListCompleted(LoginRequiredMixin, View):
-    """Return a completed tasks list"""
-
     template_name = 'tasks/task_list_completed.html'
 
     def get(self, request):

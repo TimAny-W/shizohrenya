@@ -1,8 +1,8 @@
-{% extends 'tasks/base.html' %}
+{% extends 'index.html' %}
 
 {% block title %}Профиль{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>{{ user.username }}</h1>
 
     <h5>nickname: {{ user.username }}<br></h5>
@@ -11,12 +11,10 @@
 
     <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Log out</button></a><br>
 
-{% for i in place_list %}
-    <br>место {{ i }}<br>
-    {% for line in rating %}
-        Пользователь:<a href="{% url 'profile' line.1 %}">{{ line.0 }}</a>Кол-во выполненных задач: {{ line.1 }}
-    {% endfor %}
-{% endfor %}
 
+    {% for line in rating %}
+    Место(нужно сделать ) Пользователь:<a href="{% url 'profile' line.1 %}">{{ line.0 }}</a>Кол-во выполненных задач: {{ line.1 }}<br>
+
+    {% endfor %}
 
 {% endblock %}

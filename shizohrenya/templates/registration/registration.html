@@ -1,8 +1,8 @@
-{% extends 'tasks/base.html' %}
+{% extends 'index.html ' %}
 
 {% block title %}Регистрация{% endblock %}
 
-{% block body %}
+{% block content %}
 
     <form method="post" action="{% url 'registration' %}">
         Username: {{ form.username }}<br>
