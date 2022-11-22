@@ -1,8 +1,8 @@
-{% extends 'index.html' %}
+{% extends 'tasks/base.html' %}
 
 {% block title %}Профиль{% endblock %}
 
-{% block content %}
+{% block body %}
     <h1>{{ user.username }}</h1>
 
     <h5>nickname: {{ user.username }}<br></h5>
