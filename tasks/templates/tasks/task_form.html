@@ -1,0 +1,20 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}
+Create shit
+{% endblock %}
+{% block body %}
+  <h1>creating shit</h1>
+  <form method="post" action="">
+      <a href="{% url 'home' %}">Come back</a><br>
+      {% csrf_token %}
+      Название
+      {{ form.title }}<br>
+      Текст
+      {{ form.text }}<br>
+      Срок выполнения
+      {{ form.complete_date }}
+      <input type="submit" value="Submit">
+  </form>
+  {{ errors }}
+{% endblock %}

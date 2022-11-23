@@ -1,0 +1,37 @@
+a.tasks{
+    background-color: rgb(235, 235, 235);
+    color:rgb(248, 134, 2);
+    border-radius: 3px;
+    padding: 7px 13px;
+}
+
+main {
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+}
+
+.tasks-list {
+    margin: 100px;
+    width: 800px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+
+.task {
+    height: 65px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 3px solid rgb(186, 186, 186);
+}
+
+button {
+    height: 30px;
+    width: 50px;
+    text-decoration: none;
+    color: rgb(81, 81, 81);
+    font-weight: 600;
+    text-align: center;
+}
