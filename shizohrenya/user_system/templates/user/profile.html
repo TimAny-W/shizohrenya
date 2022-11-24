@@ -1,0 +1,16 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+
+    <h5>nickname: {{ user.username }}<br></h5>
+    <h5>email: {{ user.email }}<br></h5>
+    <h5>Joined data: {{ user.date_joined }}<br></h5>
+
+    {% for point in rating %}
+        {{ point }}
+    {% endfor %}
+
+{% endblock %}

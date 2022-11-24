@@ -1,0 +1,11 @@
+{% block title %}Выход{% endblock %}
+
+
+{% block content %}
+    <form action="{% url 'logout' %}">
+        <button type="submit" class="btn btn-success" >
+            <a href="{% url 'home' %}">Submit</a>
+        </button>
+    </form>
+
+{% endblock %}

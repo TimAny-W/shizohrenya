@@ -11,16 +11,16 @@
 }
 
 header {
-    display: flex;
-    justify-content: center;
     height: 6vh;
     background-color: rgb(161, 158, 158);
-    margin-top: 0;
+
+
 }
 
 .head-navigation {
+
     height: 100%;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -35,3 +35,13 @@ li a {
     font-weight: 600;
     text-align: center;
 }
+
+.user {
+    position:absolute;
+    position: left;
+    width: 100px;
+    background-color:brown;
+}
+
+
+
