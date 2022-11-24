@@ -49,9 +49,9 @@ class Registration(View):
             return render(request,
                           self.template_name,
                           context={
-                            'form': form,
-                            'errors': form.errors
-                            }
+                              'form': form,
+                              'errors': form.errors
+                          }
                           )
 
 
@@ -67,13 +67,14 @@ class ProfileView(View):
 
         try:
             user = CustomUser.objects.get(username=pk)
+
         except ObjectDoesNotExist:
             return render(request, self.template_404)
+
         rating_list = self.rating()
         context = {
             'user': user,
             'rating': rating_list,
-            'place_list': [i+1 for i in range(len(rating_list))] # ебанутый костыль,потому что в jinja нету range(len(list))
         }
 
         if user == request.user and request.user.is_authenticated:
@@ -98,6 +99,9 @@ class ProfileView(View):
             state.append([user.username, user.completed_tasks.count()])
 
         state.sort(key=lambda x: x[1], reverse=True)
+
+        for place in range(len(state)):# Берем длину списка,и перебираем эту длину,вписываем как место в рейтинге
+            state[place].append(place+1)
 
         return state
 

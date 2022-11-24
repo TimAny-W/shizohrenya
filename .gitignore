@@ -1,0 +1,6 @@
+media/
+shizohrenya/db.sqlite3
+shizohrenya/tasks/migrations
+shizohrenya/user_system/migrations
+shizohrenya/tasks/__pycache__
+shizohrenya/user_system/__pycache__

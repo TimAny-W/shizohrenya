@@ -2,9 +2,9 @@
 
 {% block title %}Профиль{% endblock %}
 
-{% block content %}
+{% block body %}
+    <p><a href="{{ media_url }}{{ user.avatar }}"><img src="{{ media_url }}{{ user.avatar }}" width="150" height="150"></a></p>
     <h1>{{ user.username }}</h1>
-
     <h5>nickname: {{ user.username }}<br></h5>
     <h5>email: {{ user.email }}<br></h5>
     <h5>Joined data: {{ user.date_joined }}<br></h5>
@@ -12,9 +12,11 @@
     <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Log out</button></a><br>
 
 
-    {% for line in rating %}
-    Место(нужно сделать ) Пользователь:<a href="{% url 'profile' line.1 %}">{{ line.0 }}</a>Кол-во выполненных задач: {{ line.1 }}<br>
 
+    {% for line in rating %}
+        Место({{ line.2 }})Пользователь:<a href="{% url 'profile' line.1 %}">{{ line.0 }}</a>Кол-во выполненных задач: {{ line.1 }}<br>
     {% endfor %}
+
+
 
 {% endblock %}

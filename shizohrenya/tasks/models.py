@@ -25,3 +25,11 @@ class Task(models.Model):
         verbose_name = 'Заметка'
         verbose_name_plural = 'Заметки'
         ordering = ['complete', 'creating_date']
+
+
+class TaskGroup(models.Model):
+    group_name = models.CharField(max_length=20)
+    tasks = models.ManyToManyField(Task)
+
+    def __str__(self):
+        return self.group_name
