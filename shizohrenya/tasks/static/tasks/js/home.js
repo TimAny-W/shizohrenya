@@ -1,4 +1,4 @@
 function registerForm() {
-    var form = document.getElementById('register')
-    form =
+    document.getElementById('buttons').style.height="300px"
+    document.getElementById('buttons').style.display="300px"
 }

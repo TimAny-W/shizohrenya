@@ -9,6 +9,5 @@ urlpatterns = [
     path('task-delete/<int:pk>/', DeleteView.as_view(), name='task-delete'),
     path('task-complete/<int:pk>/', TaskComplete.as_view(), name='task-complete'),
     path('task-list-completed', TaskListCompleted.as_view(), name='task-list-completed'),
-    path('task-group-create', TaskGroupCreate.as_view(), name='task-group-create')
-
+    path('task-group-create', TaskGroupCreate.as_view(), name='task-group-create'),
 ]
