@@ -6,7 +6,7 @@ from tasks.models import Task
 
 
 class CustomUser(AbstractUser):
-    avatar = models.ImageField('Аватарка', default='', upload_to=f'user_avatars')
+    avatar = models.ImageField('Аватарка', default='default.png', upload_to=f'user_avatars',blank=True)
 
     completed_tasks = models.ManyToManyField(Task, )
 

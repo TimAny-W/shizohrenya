@@ -1,0 +1,21 @@
+{% extends 'tasks/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+List of shit
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}">
+{% endblock %}
+
+{% block content %}
+        <form method="post">
+            {{ form.group_name }}
+            {{ form.tasks }}
+            {% csrf_token %}
+            <input value="Complete" type="submit">
+        </form>
+{% endblock %}

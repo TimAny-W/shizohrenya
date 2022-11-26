@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from .forms import TaskCreateForm
+from .forms import TaskCreateForm, TaskGroupCreateForm
 from .models import Task
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -107,3 +107,25 @@ class TaskListCompleted(LoginRequiredMixin, View):
             'list': request.user.completed_tasks.all()
         }
         return render(request, self.template_name, context)
+
+
+class TaskGroupCreate(LoginRequiredMixin, View):
+    template_name = 'tasks/task_group_create.html'
+
+    def get(self, request):
+        context = {
+            'form': TaskGroupCreateForm
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = TaskGroupCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            context = {
+                'form': form,
+                'errors': form.errors
+            }
+            return render(request, self.template_name)

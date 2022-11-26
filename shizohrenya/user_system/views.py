@@ -31,12 +31,11 @@ class Registration(View):
 
     def post(self, request):
         """Save new user to database"""
-
-        form = UserRegistrationForm(request.POST)
-
+        print(request.FILES)
+        form = UserRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-
+            #print(form.cleaned_data.get('avatar'))
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
 
