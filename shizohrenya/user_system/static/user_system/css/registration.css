@@ -1,0 +1,44 @@
+main {
+    background-color: rgb(196, 195, 195);
+}
+
+.registration-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 300px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    height: 100vh;
+}
+
+.already-registered {
+    padding-top: 30px;
+    width: 300px;
+    text-align: center;
+}
+
+.submit-button {
+    padding-top: 15px;
+    text-align: center;
+}
+
+.btn {
+    background-color: rgb(251, 205, 119);
+}
+
+.btn:hover {
+    background-color: rgb(248, 134, 2);
+}
+
+.title { 
+    padding-bottom: 10px;
+}
+
+input { 
+    margin-top: 5px;
+}
