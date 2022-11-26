@@ -6,25 +6,34 @@ a.tasks{
 }
 
 main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
+.tasks-list {
+    padding: 20px;
+    height: auto;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 800px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
 }
 
-.tasks-list {
-    margin: 100px;
-    width: 800px;
+.overtask {
+    width: 100%;
 
-    text-align: center;
 }
 
-
 .task {
-    height: 65px;
+    width: 100%;
+    height: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border: 3px solid rgb(186, 186, 186);
 }
 
 button {
@@ -45,8 +54,56 @@ a {text-decoration: none;}
     padding: 7px 13px;
 }
 
-h2 {
+.title {
+    margin-top: 100px;
     margin-bottom: 10px;
-    margin-top: 10px;
+    width: 100%;
     text-align: center;
+    text-align: center;
+    text-shadow: rgb(186, 186, 185) 1px 0 10px;
 }
+
+#box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 2.5rem;
+  }
+.gradient-border {
+--borderWidth: 3px;
+background: #e2e0e0;
+position: relative;
+border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+content: '';
+position: absolute;
+top: calc(-1 * var(--borderWidth));
+left: calc(-1 * var(--borderWidth));
+height: calc(100% + var(--borderWidth) * 2);
+width: calc(100% + var(--borderWidth) * 2);
+background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+border-radius: calc(2 * var(--borderWidth));
+z-index: -1;
+animation: animatedgradient 3s ease alternate infinite;
+background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+

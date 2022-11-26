@@ -12,11 +12,10 @@ List of shit
 {% endblock %}
 
 {% block content %}
-
-    <div class="tasks-list">
-        <h1>Your Tasks</h1>
+    <div class="title"><h1>Tasks</h1></div>
+    <div class="tasks-list gradient-border">
             {% for task in object_list %}
-                <label>
+                <div class="overtask">
                     <div class="task">
                     {% if not task.is_completed %}
 
@@ -40,15 +39,14 @@ List of shit
                         </span>
                     </div>
                     {% endif %}
-                </label>
+                </div>
                 {% empty %}
 
                         <h2>Nothing is here...</h2>
                         <div class="add">
                             <a class="create" href="{% url 'task-create' %}">Create task</a>
                         </div>
-
-            {% endfor %}
+                {% endfor %}
     </div>
 
 {% endblock %}

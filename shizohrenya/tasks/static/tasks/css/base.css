@@ -50,8 +50,8 @@ li a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 500px;
-    font-size: 25px;
+    font-weight: 200px;
+    font-size: 16px;
     background-color: rgb(235, 235, 235);
     color:rgb(248, 134, 2);
     border-radius: 3px;
@@ -59,6 +59,8 @@ li a {
     margin: 5px;
 
 }
+
+.user p {text-align: center;}
 
 .avatar {
     width: 30px;
