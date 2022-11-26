@@ -14,7 +14,7 @@
         {% if request.user.is_authenticated %}
 
         <header>
-            <div style="width: 300px;"></div>
+            <div class="pustota"></div>
             <ul class="head-navigation">
                 <li><a href="{% url 'home' %}" class="home">Home</a></li>
                 <li><a href="{% url 'tasks' %}" class="tasks">Tasks</a></li>
@@ -22,10 +22,15 @@
                 <li><a href="https://github.com/TimAny-W/shizohrenya" class="contacts">Contacts</a></li>
                 <li><a href="https://image.winudf.com/v2/image1/Y29tLmtpcm1pbnQucmFrZXNjcmVhbWVyX3NjcmVlbl8wXzE1OTQxNzYzODNfMDEx/screen-0.jpg?fakeurl=1&type=.webp">Fuck you</a></li>
             </ul>
-            <div class="user" style="width: 300px ">
-                <span>{{ user }}</span>
-                <span class="avatar"><img src="{% static 'tasks/img/avatar_example.png' %}" alt=""></span>
+            <div class="pustota">
+                <a href="{% url 'profile' user %}">
+                    <div class="user">
+                        <span>{{ user }}</span>
+                        <span class="avatar"><img src="{% static 'tasks/img/avatar_example.png' %}" alt=""></span>
+                    </div>
+                </a>
             </div>
+
         </header>
 
         {% endif %}

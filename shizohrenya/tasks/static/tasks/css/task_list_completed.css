@@ -4,3 +4,12 @@ a.completed-tasks{
     border-radius: 3px;
     padding: 7px 13px;
 }
+
+h2, h1 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.task-list {
+    margin: 100px;
+}

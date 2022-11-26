@@ -13,12 +13,8 @@ Completed tasks list
 {% endblock %}
 
 {% block content %}
-    <div class="titles">
-        <h1>Completed Tasks list</h1>
-    </div>
-
-
-    <div class="list-group w-auto">
+    <div class="task-list list-group w-auto">
+            <h1>Completed Tasks list</h1>
             {% for task in list %}
                 <label class="list-group-item d-flex gap-3">
                     <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
@@ -36,7 +32,7 @@ Completed tasks list
                 </label>
 
                 {% empty %}
-                    <h2>Список пустой</h2>
+                    <h2>Nothing is here...</h2>
             {% endfor %}
     </div>
 
