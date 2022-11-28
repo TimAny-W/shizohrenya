@@ -1,20 +1,46 @@
 {% extends 'tasks/base.html' %}
 
-{% block title %}
-Create shit
+{% load static %}
+
+
+{% block title %} Task {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'tasks/css/task.css' %}">
 {% endblock %}
+
 {% block content %}
-  <h1>creating shit</h1>
-  <form method="post" action="">
-      <a href="{% url 'home' %}">Come back</a><br>
-      {% csrf_token %}
-      Название
-      {{ form.title }}<br>
-      Текст
-      {{ form.text }}<br>
-      Срок выполнения
-      {{ form.complete_date }}
-      <input type="submit" value="Submit">
-  </form>
-  {{ errors }}
+
+    <div class="user-info gradient-border">
+
+        <div class="your-avatar"><img src="{% static 'tasks/img/avatar_example.png' %}" alt=""></div>
+
+        <div class="status">
+            <div class="username">
+                <h1>Your task:</h1>
+            </div>
+
+            <div class="rating">
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <p>Task title: {{ form.title }}</p>
+                    <p>Task text: {{ form.text }}</p>
+                    <p>Complete date: {{ form.complete_date }}</p>
+                    <input class="button" type="submit">
+
+
+                </form>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
 {% endblock %}
