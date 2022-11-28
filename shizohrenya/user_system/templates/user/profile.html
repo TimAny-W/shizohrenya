@@ -1,16 +1,35 @@
 {% extends 'tasks/base.html' %}
 
-{% block title %}Профиль{% endblock %}
+{% load static %}
+
+{% block title %} User profile {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'user_system/css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>{{ user.username }}</h1>
 
-    <h5>nickname: {{ user.username }}<br></h5>
-    <h5>email: {{ user.email }}<br></h5>
-    <h5>Joined data: {{ user.date_joined }}<br></h5>
+    <div class="user-info gradient-border">
 
-    {% for point in rating %}
-        {{ point }}
-    {% endfor %}
+        <div class="your-avatar"><img src="{% static 'tasks/img/avatar_example.png' %}" alt=""></div>
+
+        <div class="status">
+            <div class="username">
+                <h1>{{ user.username }}</h1>
+            </div>
+            <p>Joined: {{ user.date_joined|date:"M d, Y "}}</p>
+
+
+            <div class="rating">
+                {% for line in rating %}
+            Место(нужно сделать ) Пользователь: <a href="{% url 'profile' line.1 %}">{{ line.0 }}</a> Кол-во выполненных задач: {{ line.1 }}<br>
+
+            {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
 
 {% endblock %}
