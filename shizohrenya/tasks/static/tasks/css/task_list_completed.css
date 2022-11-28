@@ -5,11 +5,79 @@ a.completed-tasks{
     padding: 7px 13px;
 }
 
-h2, h1 {
-    text-align: center;
-    margin-top: 10px;
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.task-list {
-    margin: 100px;
+
+.title {
+    margin-top: 100px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    text-align: center;
+    text-shadow: rgb(186, 186, 185) 1px 0 10px;
+}
+
+
+.tasks-list {
+    padding: 20px;
+    height: auto;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 800px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+#box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 2.5rem;
+  }
+.gradient-border {
+--borderWidth: 3px;
+background: #e2e0e0;
+position: relative;
+border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+content: '';
+position: absolute;
+top: calc(-1 * var(--borderWidth));
+left: calc(-1 * var(--borderWidth));
+height: calc(100% + var(--borderWidth) * 2);
+width: calc(100% + var(--borderWidth) * 2);
+background: linear-gradient(60deg, rgb(251, 205, 119), #f79533, #f37055, #d1a59c, #929292, #d1a59c, #f37055, #f79533, rgb(251, 205, 119)); 
+border-radius: calc(2 * var(--borderWidth));
+z-index: -1;
+animation: animatedgradient 3s ease alternate infinite;
+background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

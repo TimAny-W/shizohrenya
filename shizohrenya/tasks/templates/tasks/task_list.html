@@ -2,41 +2,48 @@
 
 {% load static %}
 
-
-{% block title %}
-List of shit
-{% endblock %}
+{% block title %} List of shit {% endblock %}
 
 {% block links %}
+    <script src="{% static 'tasks/js/tasks.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
 {% endblock %}
 
 {% block content %}
-    <div class="title"><h1>Tasks</h1></div>
+    <div id="title" class="title"><h1>Tasks</h1></div>
     <div class="tasks-list gradient-border">
             {% for task in object_list %}
                 <div class="overtask">
                     <div class="task">
                     {% if not task.is_completed %}
+                              <div class="status-icon">
+                                ✖
+                              </div>
 
-                        <input class="" type="checkbox" >
-                              <strong>{{task.title}}</strong>
-
-                                {{task.creating_date}}
-
-                        <span>
-                            <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
-                            <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
-                        </span>
+                              <div class="task-content">
+                                  <p><strong>{{task.title}}</strong></p>
+                                  <p>{{ task.text }}</p>
+                              </div>
+                              <div class="buttons">
+                                  <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
+                                  <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
+                                  <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button">Complete</button></a></td>
+                              </div>
 
                     {% else %}
-                        <input class="" type="checkbox" checked>
-                              <i><s><strong>{{task.title}}</strong></s></i>
-                              <i><s>{{task.complete_date}}</s></i>
-                        <span>
-                            <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
-                            <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
-                        </span>
+                        <div class="status-icon">
+                            &#10004; Done
+                        </div>
+                              <div class="task-content">
+                                  <p><i><s><strong>{{task.title}}</strong></s></i></p>
+                                  <p><i><s>{{ task.text }}</s></i></p>
+                              </div>
+                              <div class="buttons">
+                                  <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
+                                  <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
+                                  <td><a href=""><button type="button" onclick="newdiv(task)">Complete</button></a></td>
+                              </div>
                     </div>
                     {% endif %}
                 </div>

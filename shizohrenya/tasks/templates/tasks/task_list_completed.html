@@ -8,29 +8,40 @@ Completed tasks list
 
 {% block links %}
     <link rel="stylesheet" href="{% static 'tasks/css/task_list_completed.css' %}">
-
-    </style>
 {% endblock %}
 
 {% block content %}
     <div class="task-list list-group w-auto">
-            <h1>Completed Tasks list</h1>
-            {% for task in list %}
-                <label class="list-group-item d-flex gap-3">
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-                    <span class="pt-1 form-checked-content">
-                      <strong>{{task.title}}</strong>
-                      <small class="d-block text-muted">
-                        <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
-                        {{task.creating_date}}
-                      </small>
-                    </span>
-                    <span>
-                        <td><a href="{% url 'task' pk=task.id %}"><button type="button" class="btn btn-outline-primary me-2">View</button></a></td>
-                    </span>
-
-                </label>
-
+            <div class="title"><h1>Completed Tasks</h1></div>
+            <div class="tasks-list gradient-border">
+            {% for task in object_list %}
+                <div class="overtask">
+                    <div class="task">
+                    {% if not task.is_completed %}
+                              <div class="status-icon"></div>
+                              <div class="task-content">
+                                  <p><strong>{{task.title}}</strong></p>
+                                  <p>{{ task.text }}</p>
+                              </div>
+                              <div class="buttons">
+                                  <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
+                                  <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
+                                  <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button">Complete</button></a></td>
+                              </div>
+                    {% else %}
+                        <div class="status-icon"></div>
+                              <div class="task-content">
+                                  <p><i><s><strong>{{task.title}}</strong></s></i></p>
+                                  <p><i><s>{{task.complete_date}}</s></i></p>
+                              </div>
+                              <div class="buttons">
+                                  <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
+                                  <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
+                                  <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button">Complete</button></a></td>
+                              </div>
+                    </div>
+                    {% endif %}
+                </div>
                 {% empty %}
                     <h2>Nothing is here...</h2>
             {% endfor %}
