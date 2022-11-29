@@ -13,7 +13,7 @@
 {% block content %}
     <div class="title"><h1>Tasks</h1></div>
     <div class="tasks-list gradient-border">
-            {% for task in object_list %}
+            {% for task in tasks %}
                 <div class="overtask">
                     <div class="task">
                     {% if not task.is_completed %}

@@ -35,7 +35,7 @@ class Registration(View):
         form = UserRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            #print(form.cleaned_data.get('avatar'))
+            # print(form.cleaned_data.get('avatar'))
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
 
@@ -70,10 +70,11 @@ class ProfileView(View):
         except ObjectDoesNotExist:
             return render(request, self.template_404)
 
-        rating_list = self.rating()
+        rating_list,user_place = self.rating()
         context = {
             'user': user,
             'rating': rating_list,
+            'place_user': user_place
         }
 
         if user == request.user and request.user.is_authenticated:
@@ -87,11 +88,12 @@ class ProfileView(View):
                           self.profile_template,
                           context)
 
-    def rating(self) -> list:
+    def rating(self):
         """Get all states of users
         :return sorted states of users"""
 
         all_users = CustomUser.objects.all()
+        user_place = ''
         state = []
 
         for user in all_users:
@@ -99,10 +101,14 @@ class ProfileView(View):
 
         state.sort(key=lambda x: x[1], reverse=True)
 
-        for place in range(len(state)):# Берем длину списка,и перебираем эту длину,вписываем как место в рейтинге
-            state[place].append(place+1)
+        for place in range(len(state)):  # Берем длину списка,и перебираем эту длину,вписываем как место в рейтинге
+            state[place].append(place + 1)
 
-        return state
+        for user in state:
+            if user[0] == self.request.user:
+                print('gay')
+                user_place = user[2]
+        return state, user_place
 
         # def sort(self, list: list) -> list:
         # if len(list) <= 1:
