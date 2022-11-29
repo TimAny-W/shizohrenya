@@ -6,28 +6,29 @@
 {% block title %} Task {% endblock %}
 
 {% block links %}
+
     <link rel="stylesheet" href="{% static 'tasks/css/task.css' %}">
 {% endblock %}
 
 {% block content %}
+    <div id="title" class="title"><h1>Your task</h1></div>
+    <div class="task-create-edit gradient-border">
 
-    <div class="user-info gradient-border">
+        <div class="task-block">
 
-        <div class="your-avatar"><img src="{% static 'tasks/img/avatar_example.png' %}" alt=""></div>
-
-        <div class="status">
-            <div class="username">
-                <h1>Your task:</h1>
-            </div>
-
-            <div class="rating">
+            <div class="form-block">
                 <form action="" method="post">
                     {% csrf_token %}
 
-                    <p>Task title: {{ form.title }}</p>
-                    <p>Task text: {{ form.text }}</p>
-                    <p>Complete date: {{ form.complete_date }}</p>
-                    <input class="button" type="submit">
+                    <span>Task title:</span>
+                    <p>{{ form.title }}</p>
+
+                    <span>Task text:</span>
+                    <p>{{ form.text }}</p>
+
+                    <span>Complete date: </span>
+                    <p>{{ form.complete_date }}</p>
+                    <button class="button" type="submit">Submit</button>
 
 
                 </form>
