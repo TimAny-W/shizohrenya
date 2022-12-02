@@ -59,6 +59,7 @@ textarea {
     padding: 15px;
     width: calc(100% - 30px);
 }
+
 input {
     width: 100%;
 }
@@ -71,19 +72,9 @@ input[type=text] {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.func {
+    text-align: center;
+}
 
 /* Gradient border */
 

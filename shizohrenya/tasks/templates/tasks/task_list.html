@@ -11,7 +11,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title"><h1>Tasks</h1></div>
+    <div class="tasks-header">
+        <div class="add"></div>
+        <div class="title"><h1>Tasks</h1></div>
+        <div class="add">
+            <a class="create" href="{% url 'task-create' %}">Create task</a>
+        </div>
+
+    </div>
+
     <div class="tasks-list gradient-border">
             {% for task in tasks %}
                 <div class="overtask">
@@ -42,17 +50,13 @@
                               <div class="buttons">
                                   <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
                                   <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
-                                  <td><a href=""><button type="button" onclick="newdiv(task)">Complete</button></a></td>
+                                  <td><button type="" onclick=""><p><i><s>Complete</s></i></p></button></td>
                               </div>
                     </div>
                     {% endif %}
                 </div>
                 {% empty %}
-
-                        <h2>Nothing is here...</h2>
-                        <div class="add">
-                            <a class="create" href="{% url 'task-create' %}">Create task</a>
-                        </div>
+                    <h2>Nothing is here...</h2>
                 {% endfor %}
     </div>
 

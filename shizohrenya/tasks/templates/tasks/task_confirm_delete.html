@@ -1,13 +1,60 @@
 {% extends 'tasks/base.html' %}
 
-{% block title %}
-Delete shit
+{% load static %}
+
+
+{% block title %} Task {% endblock %}
+
+{% block links %}
+    <script src="{% static 'tasks/js/timer.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'tasks/css/task.css' %}">
 {% endblock %}
-{% block body %}
-    <a href="{% url 'tasks' %}">Come back</a>
-    <form method="post" action="">
-        {% csrf_token %}
-        <p>Delete this shit? {{task}}</p>
-        <input value="Delete" type="submit">
-    </form>
+
+{% block content %}
+    <div id="title" class="title"><h1>Your task</h1></div>
+    <div class="task-create-edit gradient-border">
+
+        <div class="task-block">
+
+            <div class="form-block">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.text }}</p>
+
+                <div style="width:500px">
+                    <h4 style="display:inline;">Дата создания</h4>
+                    <span>{{object.creating_date|date:"M d, Y H:m:s"}}</span>
+                </div>
+
+
+                <div style="width:500px">
+                    <h4 style="display:inline;">Дата выполнения</h4>
+                    <div id="task-box" style="display:inline;"><span>{{object.complete_date|date:"M d, Y H:m:s"}}</span></div>
+                </div>
+
+
+
+                <form class="func" method="post" action="">
+                    {% csrf_token %}
+                    <button  value="Delete" type="submit">Delete</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
