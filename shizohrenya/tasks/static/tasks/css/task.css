@@ -49,11 +49,6 @@ button {
     margin-top: 20px;
 }
 
-.form-block {
-    width: 600px;
-}
-
-
 textarea {
     resize: none;
     padding: 15px;
@@ -64,11 +59,23 @@ input {
     width: 100%;
 }
 
+.task-block {
+    height: 100%;
+}
+
 input[type=text] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+}
+
+.form-block {
+    width: 600px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 

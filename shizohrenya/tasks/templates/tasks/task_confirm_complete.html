@@ -16,18 +16,25 @@
         <div class="task-block">
 
             <div class="form-block">
-                <h3>{{ task.title }}</h3>
-                <p>{{ task.text }}</p>
+                                <div>
+                <h4>Task title:</h4>
+                <h2>{{ task.title }}</h2>
+                </div>
 
-                <div style="width:500px">
-                    <h4 style="display:inline;">Дата создания</h4>
-                    <span>{{task.creating_date|date:"M d, Y H:m:s"}}</span>
+                <div>
+                <h4>Task text:</h4>
+                <p>{{ task.text }}</p>
+                </div>
+
+                <div>
+                <h4>Дата создания:</h4>
+                <span>{{task.creating_date|date:"M d, Y H:m:s"}}</span>
                 </div>
 
 
-                <div style="width:500px">
-                    <h4 style="display:inline;">Дата выполнения</h4>
-                    <div id="task-box" style="display:inline;"><span>{{task.complete_date|date:"M d, Y H:m:s"}}</span></div>
+                <div>
+                    <h4>Дата выполнения:</h4>
+                    <div><span>{{task.complete_date|date:"M d, Y H:m:s"}}</span></div>
                 </div>
 
 
