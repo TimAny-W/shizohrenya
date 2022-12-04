@@ -26,14 +26,15 @@
                 <!-- {{ place_user }} -->
                 <h2 class="top-title">Top 5 users:</h2>
                 {% for line in rating %}
+                    {% if line.2 <= 5 %}
                     <div id="user">
                         <p><i class="fa fa-trophy" style="font-size:21px">{{ line.2 }}</i></p>
                         <p>User: <a href="{% url 'profile' line.0 %}">{{ line.0 }}</a></p> 
                         <p>Completed tasks count: {{ line.1 }}</p>  
                     </div>
-                {% if line.2 == 5 %}
-                    break
-                {% endif %}
+                    {% endif %}
+
+
                 {% endfor %}
             </div>
 
