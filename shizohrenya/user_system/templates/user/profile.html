@@ -23,7 +23,7 @@
 
             <div class="rating">
                 {% for line in rating %}
-            Место(нужно сделать ) Пользователь: <a href="{% url 'profile' line.1 %}">{{ line.0 }}</a> Кол-во выполненных задач: {{ line.1 }}<br>
+            Место ({{ line.2 }}) Пользователь: <a href="{% url 'profile' line.1 %}">{{ line.0 }}</a> Кол-во выполненных задач: {{ line.1 }}<br>
 
             {% endfor %}
             </div>
