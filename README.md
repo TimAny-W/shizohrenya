@@ -5,5 +5,5 @@
 ## it has: 
 ###-rating system
 ###-accounts system
-###-task timer
+
 
