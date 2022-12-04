@@ -6,6 +6,7 @@
 
 {% block links %}
     <link rel="stylesheet" href="{% static 'user_system/css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
@@ -16,18 +17,25 @@
 
         <div class="status">
             <div class="username">
-                <h1>{{ user.username }}</h1>
+                <h2>{{ user.username }}</h2>
                 <a href="{% url 'logout' %}"><button type="button" class="button">Log out</button></a><br>
             </div>
             <p>You joined: {{ user.date_joined|date:"M d, Y "}}</p>
 
 
             <div class="rating">
-                {{ place_user }}<br>
+                <!-- {{ place_user }} -->
+                <h2 class="top-title">Top 5 users:</h2>
                 {% for line in rating %}
-            Место ({{ line.2 }}) Пользователь: <a href="{% url 'profile' line.1 %}">{{ line.0 }}</a> Кол-во выполненных задач: {{ line.1 }}<br>
-
-            {% endfor %}
+                    <div id="user">
+                        <p><i class="fa fa-trophy" style="font-size:21px">{{ line.2 }}</i></p>
+                        <p>User: <a href="{% url 'profile' line.0 %}">{{ line.0 }}</a></p> 
+                        <p>Completed tasks count: {{ line.1 }}</p>  
+                    </div>
+                {% if line.2 == 5 %}
+                    break
+                {% endif %}
+                {% endfor %}
             </div>
 
         </div>
