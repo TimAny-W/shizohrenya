@@ -18,7 +18,7 @@ setInterval(()=>{
     if (diff>0) {
     countdownBox.innerHTML = d + " days, " + h + " hours, " + m + " minutes, " + s + " seconds."
     } else {
-
+    countdownBox.innerHTML = "0 seconds." // "0" + " days, " + "0" + " hours, " + "0" + " minutes, " + "0" + " seconds."
     }
 
 }, 1000)
