@@ -9,37 +9,42 @@
 <link rel="stylesheet" href="{% static 'tasks/css/task.css' %}" />
 {% endblock %}
 
+
 {% block content %}
-<div id="title" class="title"><h1>Your task</h1></div>
-<div class="task-create-edit gradient-border">
-  <div class="task-block">
-    <div class="form-block">
-      <div>
-        <h4>Task title:</h4>
-        <h2>{{ task.title }}</h2>
-      </div>
-
-      <div>
-        <h4>Task text:</h4>
-        <p>{{ task.text }}</p>
-      </div>
-
-      <div>
-        <h4>Дата создания:</h4>
-        <span>{{object.creating_date|date:"M d, Y H:m:s"}}</span>
-      </div>
-
-      <div>
-        <h4>Дата выполнения:</h4>
-        <div><span>{{object.complete_date|date:"M d, Y H:m:s"}}</span></div>
-      </div>
-
-      <form class="func" method="post" action="">
-        {% csrf_token %}
-        <button value="Delete" type="submit">Delete</button>
-      </form>
-    </div>
-  </div>
-</div>
-
+  <form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ task }}"?</p>
+    {{ form }}
+  <input type="submit" value="Confirm">
 {% endblock %}
+
+<!--<div id="title" class="title"><h1>Your task</h1></div>-->
+<!--<div class="task-create-edit gradient-border">-->
+<!--  <div class="task-block">-->
+<!--    <div class="form-block">-->
+<!--      <div>-->
+<!--        <h4>Task title:</h4>-->
+<!--        <h2>{{ task.title }}</h2>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <h4>Task text:</h4>-->
+<!--        <p>{{ task.text }}</p>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <h4>Дата создания:</h4>-->
+<!--        <span>{{object.creating_date|date:"M d, Y H:m:s"}}</span>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <h4>Дата выполнения:</h4>-->
+<!--        <div><span>{{object.complete_date|date:"M d, Y H:m:s"}}</span></div>-->
+<!--      </div>-->
+
+<!--      <form class="func" method="post" action="">-->
+<!--        {% csrf_token %}-->
+<!--        <button value="Delete" type="submit">Delete</button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

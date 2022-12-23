@@ -79,6 +79,7 @@ class DeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('tasks')
 
 
+
 class TaskComplete(LoginRequiredMixin, View):
     template_name = 'tasks/task_confirm_complete.html'
 
@@ -92,12 +93,16 @@ class TaskComplete(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         task = Task.objects.get(id=pk)
-        task.is_completed = True
+
+        if task.is_completed == False:
+            task.is_completed = True
+        else:
+            task.is_completed = False
+
         task.save()
         request.user.completed_tasks.add(task)
         print(f'{task.title} is switched to {task.is_completed}')
         return redirect('tasks')
-
 
 class TaskListCompleted(LoginRequiredMixin, View):
     template_name = 'tasks/task_list_completed.html'
