@@ -97,7 +97,7 @@ class TaskComplete(LoginRequiredMixin, View):
         if task.is_completed == False:
             task.is_completed = True
         else:
-            task.is_completed = False
+            task.is_completed = True
 
         task.save()
         request.user.completed_tasks.add(task)
@@ -109,7 +109,7 @@ class TaskListCompleted(LoginRequiredMixin, View):
 
     def get(self, request):
         context = {
-            'list': request.user.completed_tasks.all()
+            'tasks': request.user.completed_tasks.all()
         }
         return render(request, self.template_name, context)
 

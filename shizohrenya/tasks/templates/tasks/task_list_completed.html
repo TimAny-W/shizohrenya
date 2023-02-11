@@ -7,44 +7,83 @@ Completed tasks list
 {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'tasks/css/task_list_completed.css' %}">
+    <script src="{% static 'tasks/js/tasks.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
 {% endblock %}
 
 {% block content %}
-    <div class="task-list list-group w-auto">
-            <div class="title"><h1>Completed Tasks</h1></div>
-            <div class="tasks-list gradient-border">
-            {% for task in object_list %}
+    <div class="tasks-header">
+        <div class="add"></div>
+        <div class="title"><h1>Completed Tasks</h1></div>
+        <div class="add">
+            <a class="create" href="{% url 'task-create' %}">Create task</a>
+        </div>
+
+    </div>
+    <div class="tasks-list gradient-border">
+            {% for task in tasks %}
                 <div class="overtask">
                     <div class="task">
                     {% if not task.is_completed %}
-                              <div class="status-icon"></div>
+                              <div class="status-icon">
+                                ✖
+                              </div>
+
                               <div class="task-content">
                                   <p><strong>{{task.title}}</strong></p>
                                   <p>{{ task.text }}</p>
                               </div>
                               <div class="buttons">
                                   <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
-                                  <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
-                                  <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button">Complete</button></a></td>
+                                  <td>
+                                      <form action="{% url 'task-delete' pk=task.id %}" method="post">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                          <button type="submit" value="Confirm">Delete</button>
+                                      </form>
+                                  </td>
+                                  <td>
+                                      <form action="{% url 'task-complete' pk=task.id %}" method="post">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                          <button type="submit" value="Confirm">Complete</button>
+                                      </form>
+                                  </td>
                               </div>
+
                     {% else %}
-                        <div class="status-icon"></div>
+                        <div class="status-icon">
+                            &#10004;
+                        </div>
                               <div class="task-content">
                                   <p><i><s><strong>{{task.title}}</strong></s></i></p>
-                                  <p><i><s>{{task.complete_date}}</s></i></p>
+                                  <p><i><s>{{ task.text }}</s></i></p>
                               </div>
                               <div class="buttons">
                                   <td><a href="{% url 'task-update' pk=task.id %}"><button type="button">Edit</button></a></td>
-                                  <td><a href="{% url 'task-delete' pk=task.id %}"><button type="button">Delete</button></a></td>
-                                  <td><a href="{% url 'task-complete' pk=task.id %}"><button type="button">Complete</button></a></td>
+
+                                  <td>
+                                      <form action="{% url 'task-delete' pk=task.id %}" method="post">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                          <button type="submit" value="Confirm">Delete</button>
+                                    </form>
+                                  </td>
+                                  <td>
+                                      <form action="{% url 'task-complete' pk=task.id %}" method="post">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                          <button type="submit" value="Confirm">Uncomplete</button>
+                                      </form>
+                                  </td>
                               </div>
                     </div>
                     {% endif %}
                 </div>
                 {% empty %}
                     <h2>Nothing is here...</h2>
-            {% endfor %}
+                {% endfor %}
     </div>
 
 
